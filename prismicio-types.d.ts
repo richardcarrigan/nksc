@@ -4,7 +4,12 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = never;
+type HomepageDocumentDataSlicesSlice =
+  | TextWithImageSlice
+  | TestimonialsSlice
+  | HeroSlice
+  | FeaturesSlice
+  | CallToActionSlice;
 
 /**
  * Content for Homepage documents
@@ -80,7 +85,12 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = never;
+type PageDocumentDataSlicesSlice =
+  | TestimonialsSlice
+  | TextWithImageSlice
+  | HeroSlice
+  | FeaturesSlice
+  | CallToActionSlice;
 
 /**
  * Content for Page documents
