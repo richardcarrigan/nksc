@@ -26,8 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await client.getSingle('settings');
 
   return {
-    title: settings.data.site_title || 'Flowrise',
-    description: settings.data.meta_description || 'Flowrise is the relaxing app for you.',
+    title: settings.data.site_title || 'North Kitsap Soccer Club',
+    description: settings.data.meta_description || 'NKSC is the longest-standing soccer club in North Kitsap.',
     openGraph: {
       images: [settings.data.og_image.url || ''],
     },
