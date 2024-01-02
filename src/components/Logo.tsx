@@ -7,6 +7,7 @@ export default function Logo() {
       width={64}
       height={64}
       alt='North Kitsap Soccer Club'
+      className='h-8 w-auto'
     />
   )
 }

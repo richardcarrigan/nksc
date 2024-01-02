@@ -26,24 +26,28 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await client.getSingle('settings');
 
   return {
-    title: settings.data.site_title || 'Flowrise',
-    description: settings.data.meta_description || 'Flowrise is the relaxing app for you.',
+    title: settings.data.site_title || 'North Kitsap Soccer Club',
+    description: settings.data.meta_description || 'NKSC is the longest-standing soccer club in North Kitsap.',
     openGraph: {
       images: [settings.data.og_image.url || ''],
     },
   }
 }
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const client = createClient();
+
+  const settings = await client.getSingle('settings');
+
   return (
     <html lang="en" className={clsx(nunito.variable, nunitoSans.variable)}>
       <body>
-          <Header />
+        <Header settings={settings} />
           {children}
-          <Footer />
+        <Footer settings={settings} />
         <div className='fixed bg-gradient-to-tr from-emerald-50 to-cyan-50 z-[-1] inset-0 opacity-50' />
         <PrismicPreview repositoryName={repositoryName} />
       </body>
