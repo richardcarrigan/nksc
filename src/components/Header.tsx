@@ -58,7 +58,7 @@ export default function Header({settings}: any) {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {settings.data.navigation.map(({link, label}: any) => (
-                  <PrismicNextLink field={link} className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
+                  <PrismicNextLink key={label} field={link} className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
                     {label}
                   </PrismicNextLink>
                 ))}
