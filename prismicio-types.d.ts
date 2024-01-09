@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | FullWidthTextSlice
   | HeroSlice
   | TextWithImageSlice
   | CallToActionSlice
@@ -86,6 +87,7 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | FullWidthTextSlice
   | HeroSlice
   | TextWithImageSlice
   | TestimonialsSlice
@@ -468,6 +470,51 @@ export type FeaturesSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *FullWidthText → Primary*
+ */
+export interface FullWidthTextSliceDefaultPrimary {
+  /**
+   * Text field in *FullWidthText → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: full_width_text.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for FullWidthText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FullWidthTextSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FullWidthTextSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FullWidthText*
+ */
+type FullWidthTextSliceVariation = FullWidthTextSliceDefault;
+
+/**
+ * FullWidthText Shared Slice
+ *
+ * - **API ID**: `full_width_text`
+ * - **Description**: FullWidthText
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FullWidthTextSlice = prismic.SharedSlice<
+  "full_width_text",
+  FullWidthTextSliceVariation
+>;
+
+/**
  * Primary content in *Hero → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -823,6 +870,10 @@ declare module "@prismicio/client" {
       FeaturesSliceDefaultItem,
       FeaturesSliceVariation,
       FeaturesSliceDefault,
+      FullWidthTextSlice,
+      FullWidthTextSliceDefaultPrimary,
+      FullWidthTextSliceVariation,
+      FullWidthTextSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceHorizontalPrimary,
